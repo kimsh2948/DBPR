@@ -21,7 +21,7 @@ namespace DBProgrammingtest
         }
         static void test()
         {
-            int a = 1;
+            int a = 10;
         }
 
 
