@@ -17,6 +17,13 @@ namespace DBProgrammingtest
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+            test();
         }
+        static void test()
+        {
+            int a = 1;
+        }
+
+
     }
 }
