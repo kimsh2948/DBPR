@@ -8,21 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CafeManagement
+namespace ERPTest
 {
     public partial class Form1 : Form
     {
         public Form1()
         {
             InitializeComponent();
-        }
-
-        private void buttonLogin_Click(object sender, EventArgs e)
-        {
-            string input_id = textBoxInputID.Text;
-            string input_pw = textBoxInputPW.Text;
-            string query = 
-
         }
     }
 }

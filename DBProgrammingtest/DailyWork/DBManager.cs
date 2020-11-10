@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
-namespace CafeManagement
+namespace DailyWork
 {
     class DBManager
     {
@@ -28,19 +28,14 @@ namespace CafeManagement
             }
 
         }
-        public string Select(string query)
+        public MySqlDataReader Select(string query)
         {
             using (MySqlConnection conn = new MySqlConnection(strConn))
             {
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 MySqlDataReader rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                    query = string.Format("{0} : {1}", rdr["staff_id"], rdr["staff_pw"]);
-                }
-                rdr.Close();
-                return query;
+                return rdr;
 
             }
 

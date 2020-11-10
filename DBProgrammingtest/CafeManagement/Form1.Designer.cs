@@ -36,10 +36,10 @@
             this.labelLoginInterface = new System.Windows.Forms.Label();
             this.buttonLogout = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.buttonAmericano = new System.Windows.Forms.Button();
-            this.buttonLatte = new System.Windows.Forms.Button();
             this.buttonCafeMoca = new System.Windows.Forms.Button();
+            this.buttonLatte = new System.Windows.Forms.Button();
+            this.buttonAmericano = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -84,6 +84,7 @@
             this.buttonLogin.TabIndex = 4;
             this.buttonLogin.Text = "로그인";
             this.buttonLogin.UseVisualStyleBackColor = true;
+            this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
             // 
             // labelLoginInterface
             // 
@@ -116,22 +117,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "캐셔용 화면";
             // 
-            // comboBox1
+            // buttonCafeMoca
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(17, 30);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(187, 20);
-            this.comboBox1.TabIndex = 8;
-            // 
-            // buttonAmericano
-            // 
-            this.buttonAmericano.Location = new System.Drawing.Point(17, 66);
-            this.buttonAmericano.Name = "buttonAmericano";
-            this.buttonAmericano.Size = new System.Drawing.Size(187, 66);
-            this.buttonAmericano.TabIndex = 9;
-            this.buttonAmericano.Text = "아메리카노";
-            this.buttonAmericano.UseVisualStyleBackColor = true;
+            this.buttonCafeMoca.Location = new System.Drawing.Point(526, 66);
+            this.buttonCafeMoca.Name = "buttonCafeMoca";
+            this.buttonCafeMoca.Size = new System.Drawing.Size(187, 66);
+            this.buttonCafeMoca.TabIndex = 11;
+            this.buttonCafeMoca.Text = "카페모카";
+            this.buttonCafeMoca.UseVisualStyleBackColor = true;
             // 
             // buttonLatte
             // 
@@ -142,14 +135,22 @@
             this.buttonLatte.Text = "라떼";
             this.buttonLatte.UseVisualStyleBackColor = true;
             // 
-            // buttonCafeMoca
+            // buttonAmericano
             // 
-            this.buttonCafeMoca.Location = new System.Drawing.Point(526, 66);
-            this.buttonCafeMoca.Name = "buttonCafeMoca";
-            this.buttonCafeMoca.Size = new System.Drawing.Size(187, 66);
-            this.buttonCafeMoca.TabIndex = 11;
-            this.buttonCafeMoca.Text = "카페모카";
-            this.buttonCafeMoca.UseVisualStyleBackColor = true;
+            this.buttonAmericano.Location = new System.Drawing.Point(17, 66);
+            this.buttonAmericano.Name = "buttonAmericano";
+            this.buttonAmericano.Size = new System.Drawing.Size(187, 66);
+            this.buttonAmericano.TabIndex = 9;
+            this.buttonAmericano.Text = "아메리카노";
+            this.buttonAmericano.UseVisualStyleBackColor = true;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(17, 30);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(187, 20);
+            this.comboBox1.TabIndex = 8;
             // 
             // groupBox2
             // 
