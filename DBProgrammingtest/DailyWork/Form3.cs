@@ -36,7 +36,7 @@ namespace DailyWork
         
         public void ModWork()
         {
-            int indexnum = form1.listViewWorkList.FocusedItem.Index;
+            int indexnum = form1.listViewWorkList.FocusedItem.Index-1;
             /*
             string maincategory = form1.listViewWorkList.Items[indexnum].SubItems[1].Text;
             string middlecategory = form1.listViewWorkList.Items[indexnum].SubItems[2].Text;
