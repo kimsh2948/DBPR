@@ -28,16 +28,22 @@ namespace DailyWork
             }
 
         }
-        public MySqlDataReader Select(string query)
+        public void Update(string query)
         {
             using (MySqlConnection conn = new MySqlConnection(strConn))
             {
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(query, conn);
-                MySqlDataReader rdr = cmd.ExecuteReader();
-                return rdr;
-
+                cmd.ExecuteNonQuery();
             }
+        }
+        public MySqlDataReader Select(string query)
+        {
+            MySqlConnection conn = new MySqlConnection(strConn);
+            conn.Open();
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            return rdr;
 
         }
     }

@@ -32,6 +32,7 @@
             this.buttonWorkMod = new System.Windows.Forms.Button();
             this.buttonWorkDel = new System.Windows.Forms.Button();
             this.listViewWorkList = new System.Windows.Forms.ListView();
+            this.buttonLoadWorkList = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonWorkReg
@@ -52,6 +53,7 @@
             this.buttonWorkMod.TabIndex = 1;
             this.buttonWorkMod.Text = "업무수정";
             this.buttonWorkMod.UseVisualStyleBackColor = true;
+            this.buttonWorkMod.Click += new System.EventHandler(this.buttonWorkMod_Click);
             // 
             // buttonWorkDel
             // 
@@ -65,18 +67,28 @@
             // listViewWorkList
             // 
             this.listViewWorkList.GridLines = true;
-            this.listViewWorkList.HideSelection = false;
             this.listViewWorkList.Location = new System.Drawing.Point(170, 48);
             this.listViewWorkList.Name = "listViewWorkList";
             this.listViewWorkList.Size = new System.Drawing.Size(505, 236);
             this.listViewWorkList.TabIndex = 3;
             this.listViewWorkList.UseCompatibleStateImageBehavior = false;
             // 
+            // buttonLoadWorkList
+            // 
+            this.buttonLoadWorkList.Location = new System.Drawing.Point(26, 48);
+            this.buttonLoadWorkList.Name = "buttonLoadWorkList";
+            this.buttonLoadWorkList.Size = new System.Drawing.Size(121, 41);
+            this.buttonLoadWorkList.TabIndex = 4;
+            this.buttonLoadWorkList.Text = "업무 불러오기";
+            this.buttonLoadWorkList.UseVisualStyleBackColor = true;
+            this.buttonLoadWorkList.Click += new System.EventHandler(this.buttonLoadWorkList_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonLoadWorkList);
             this.Controls.Add(this.listViewWorkList);
             this.Controls.Add(this.buttonWorkDel);
             this.Controls.Add(this.buttonWorkMod);
@@ -92,7 +104,8 @@
         private System.Windows.Forms.Button buttonWorkReg;
         private System.Windows.Forms.Button buttonWorkMod;
         private System.Windows.Forms.Button buttonWorkDel;
-        private System.Windows.Forms.ListView listViewWorkList;
+        public System.Windows.Forms.ListView listViewWorkList;
+        private System.Windows.Forms.Button buttonLoadWorkList;
     }
 }
 
