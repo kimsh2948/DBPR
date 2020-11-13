@@ -36,24 +36,21 @@ namespace DailyWork
         
         public void ModWork()
         {
-            int indexnum = form1.listViewWorkList.FocusedItem.Index-1;
-            /*
-            string maincategory = form1.listViewWorkList.Items[indexnum].SubItems[1].Text;
-            string middlecategory = form1.listViewWorkList.Items[indexnum].SubItems[2].Text;
-            string subcategory = form1.listViewWorkList.Items[indexnum].SubItems[3].Text;
-            */
+            int indexnum = form1.listViewWorkList.FocusedItem.Index + 1;
+
             var maincategory = comboBoxMainCateMod.Text;
             var middlecategory = comboBoxMiddleCateMod.Text;
             var subcategory = comboBoxSubCateMod.Text;
-            string query = "UPDATE dailywork SET MainCategory = '" + maincategory + "', " +
-                "'" + middlecategory + "', '" + subcategory + "' WHERE id = '"+indexnum+"'";
+            string query = "UPDATE dailywork SET MainCategory = @maincategory, MiddleCategory = " +
+                "@maincategory, SubCategory = @subcategory WHERE id='"+indexnum+"'";
+
             if (maincategory == "대분류" || middlecategory == "중분류" || subcategory == "소분류")
             {
                 MessageBox.Show("항목을 수정해 주세요");
             }
             else
             {
-                DBManager.GetInstace().Update(query);
+                DBManager.GetInstace().Update(query, maincategory, middlecategory, subcategory);
                 this.Close();
             }
         }

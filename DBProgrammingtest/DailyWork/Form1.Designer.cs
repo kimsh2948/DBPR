@@ -63,10 +63,12 @@
             this.buttonWorkDel.TabIndex = 2;
             this.buttonWorkDel.Text = "업무삭제";
             this.buttonWorkDel.UseVisualStyleBackColor = true;
+            this.buttonWorkDel.Click += new System.EventHandler(this.buttonWorkDel_Click);
             // 
             // listViewWorkList
             // 
             this.listViewWorkList.GridLines = true;
+            this.listViewWorkList.HideSelection = false;
             this.listViewWorkList.Location = new System.Drawing.Point(170, 48);
             this.listViewWorkList.Name = "listViewWorkList";
             this.listViewWorkList.Size = new System.Drawing.Size(505, 236);

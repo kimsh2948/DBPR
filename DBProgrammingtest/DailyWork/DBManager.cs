@@ -18,7 +18,7 @@ namespace DailyWork
 
         }
 
-        public void Insert(string query)
+        public void DBquery(string query)
         {
             using (MySqlConnection conn = new MySqlConnection(strConn))
             {
@@ -28,12 +28,15 @@ namespace DailyWork
             }
 
         }
-        public void Update(string query)
+        public void Update(string query, string maincategory, string middlecategory, string subcategory)
         {
             using (MySqlConnection conn = new MySqlConnection(strConn))
             {
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@maincategory", maincategory);
+                cmd.Parameters.AddWithValue("@middlecategory", middlecategory);
+                cmd.Parameters.AddWithValue("@subcategory", subcategory);
                 cmd.ExecuteNonQuery();
             }
         }

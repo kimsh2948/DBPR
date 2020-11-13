@@ -37,17 +37,28 @@ namespace DailyWork
         }
         private void buttonWorkMod_Click(object sender, EventArgs e)
         {
-            Form3 form3 = new Form3(this);
-            form3.Show();
+            if (listViewWorkList.SelectedIndices.Count > 0)
+            {
+                Form3 form3 = new Form3(this);
+                form3.Show();
+            }
+            else
+            {
+                MessageBox.Show("항목을 선택해 주세요");
+            }
+
         }
 
         private void buttonLoadWorkList_Click(object sender, EventArgs e)
         {
             Form2 form2 = new Form2();
+            int i = 0;
             List<WorkCategory> worklist = form2.LoadWork();
+            if (listViewWorkList.Items.Count > 0) {
+                listViewWorkList.Items.Clear();
+            }
             listViewWorkList.BeginUpdate();
             ListViewItem item;
-            int i = 0;
             while (i < worklist.Count)
             {
                 WorkCategory workcategory = new WorkCategory();
@@ -58,12 +69,26 @@ namespace DailyWork
                 item.SubItems.Add(workcategory.SubCategory);
 
                 listViewWorkList.Items.Add(item);
-
                 i++;
             }
             listViewWorkList.EndUpdate();
         }
 
-
+        private void buttonWorkDel_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            int indexnum = listViewWorkList.FocusedItem.Index + 1;
+            if (MessageBox.Show("선택하신 업무가 삭제됩니다", "업무 삭제", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                string query = "DELETE FROM dailywork WHERE id = '"+indexnum+"'";
+                DBManager.GetInstace().DBquery(query);
+                query = "ALTER TABLE dailywork AUTO_INCREMENT = '" + indexnum + "'";
+                //DBManager.GetInstace().DBquery(query);
+            }
+            else
+            {
+                MessageBox.Show("삭제를 취소하셨습니다.");
+            }
+        }
     }
 }

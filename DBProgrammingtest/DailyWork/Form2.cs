@@ -35,22 +35,23 @@ namespace DailyWork
         private void buttonWorkRegSave_Click(object sender, EventArgs e)
         {
             AddWork();
-            //AddListView();
+            AddListView();
         }
         public void AddWork()
         {
+            WorkCategory workcategory = new WorkCategory();
             var maincategory = comboBoxMainCate.Text;
             var middlecategory = comboBoxMiddleCate.Text;
             var subcategory = comboBoxSubCate.Text;
-            string query = "INSERT INTO dailywork(MainCategory, MiddleCategory, SubCategory) " +
-                "VALUES('" + maincategory + "', '" + middlecategory + "','" + subcategory + "')";
+            string query = "INSERT INTO dailywork(id, MainCategory, MiddleCategory, SubCategory) " +
+                "VALUES('"+workcategory.id+"','" + maincategory + "', '" + middlecategory + "','" + subcategory + "')";
             if (maincategory == "대분류" || middlecategory == "중분류" || subcategory == "소분류")
             {
                 MessageBox.Show("모든 항목을 선택하세요");
             }
             else
             {
-                DBManager.GetInstace().Insert(query);
+                DBManager.GetInstace().DBquery(query);
                 this.Close();
             }
         }
@@ -77,6 +78,10 @@ namespace DailyWork
 
         public void AddListView()
         {
+            if (form1.listViewWorkList.Items.Count > 0)
+            {
+                form1.listViewWorkList.Items.Clear();
+            }
             List<WorkCategory> worklist = LoadWork();
             form1.listViewWorkList.BeginUpdate();
             ListViewItem item;
