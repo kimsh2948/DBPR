@@ -77,18 +77,26 @@ namespace DailyWork
         private void buttonWorkDel_Click(object sender, EventArgs e)
         {
             Form2 form2 = new Form2();
-            int indexnum = listViewWorkList.FocusedItem.Index + 1;
+            int indexnum = listViewWorkList.FocusedItem.Index + 1;//선택된 listview 인덱스에 +1, DB id와 일치
             if (MessageBox.Show("선택하신 업무가 삭제됩니다", "업무 삭제", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 string query = "DELETE FROM dailywork WHERE id = '"+indexnum+"'";
                 DBManager.GetInstace().DBquery(query);
-                query = "ALTER TABLE dailywork AUTO_INCREMENT = '" + indexnum + "'";
+                //query = "ALTER TABLE dailywork AUTO_INCREMENT = '" + indexnum + "'";
                 //DBManager.GetInstace().DBquery(query);
+                DelList(indexnum);
             }
             else
             {
                 MessageBox.Show("삭제를 취소하셨습니다.");
             }
+        }
+        public void DelList(int indexnum)
+        {
+            listViewWorkList.BeginUpdate();
+            listViewWorkList.Items.RemoveAt(indexnum-1);
+            listViewWorkList.EndUpdate();
+
         }
     }
 }

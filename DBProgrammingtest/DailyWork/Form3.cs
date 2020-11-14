@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace DailyWork
 {
@@ -17,12 +18,12 @@ namespace DailyWork
         {
             InitializeComponent();
             InitVariables();
+            this.buttonWorkModSave.Click += buttonWorkModSave_Click;
         }
         public Form3(Form1 form)
         {
             InitializeComponent();
             form1 = form;
-            this.buttonWorkModSave.Click += buttonWorkModSave_Click;
         }
         public void InitVariables()
         {
@@ -31,18 +32,21 @@ namespace DailyWork
 
         private void buttonWorkModSave_Click(object sender, EventArgs e)
         {
+            Form2 form2 = new Form2();
             ModWork();
+            //form2.AddListView();
         }
         
         public void ModWork()
         {
             int indexnum = form1.listViewWorkList.FocusedItem.Index + 1;
+            string query = "SELECT * FROM dailywork";
 
-            var maincategory = comboBoxMainCateMod.Text;
-            var middlecategory = comboBoxMiddleCateMod.Text;
-            var subcategory = comboBoxSubCateMod.Text;
-            string query = "UPDATE dailywork SET MainCategory = @maincategory, MiddleCategory = " +
-                "@maincategory, SubCategory = @subcategory WHERE id='"+indexnum+"'";
+            string maincategory = comboBoxMainCateMod.Text;
+            string middlecategory = comboBoxMiddleCateMod.Text;
+            string subcategory = comboBoxSubCateMod.Text;
+            query = "UPDATE dailywork SET MainCategory = @maincategory, MiddleCategory = " +
+                "@middlecategory, SubCategory = @subcategory WHERE id='"+indexnum+"'";
 
             if (maincategory == "대분류" || middlecategory == "중분류" || subcategory == "소분류")
             {

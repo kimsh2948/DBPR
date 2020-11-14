@@ -45,7 +45,7 @@ namespace DailyWork
             var subcategory = comboBoxSubCate.Text;
             string query = "INSERT INTO dailywork(id, MainCategory, MiddleCategory, SubCategory) " +
                 "VALUES('"+workcategory.id+"','" + maincategory + "', '" + middlecategory + "','" + subcategory + "')";
-            if (maincategory == "대분류" || middlecategory == "중분류" || subcategory == "소분류")
+            if (maincategory == "대분류" || middlecategory == "중분류" || subcategory == "소분류")//세가지 모두 선택해야 저장
             {
                 MessageBox.Show("모든 항목을 선택하세요");
             }
@@ -78,7 +78,7 @@ namespace DailyWork
 
         public void AddListView()
         {
-            if (form1.listViewWorkList.Items.Count > 0)
+            if (form1.listViewWorkList.Items.Count > 0)//listview에 아이템 있으면 지우고 로드
             {
                 form1.listViewWorkList.Items.Clear();
             }
@@ -86,7 +86,7 @@ namespace DailyWork
             form1.listViewWorkList.BeginUpdate();
             ListViewItem item;
             int i = 0;
-            while (i < worklist.Count)
+            while (i < worklist.Count)//listview에 삽입
             {
                 WorkCategory workcategory = new WorkCategory();
                 workcategory = worklist[i];

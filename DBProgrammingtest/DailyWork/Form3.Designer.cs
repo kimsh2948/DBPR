@@ -39,7 +39,7 @@
             this.buttonWorkModSave.Location = new System.Drawing.Point(179, 305);
             this.buttonWorkModSave.Name = "buttonWorkModSave";
             this.buttonWorkModSave.Size = new System.Drawing.Size(87, 33);
-            this.buttonWorkModSave.TabIndex = 7;
+            this.buttonWorkModSave.TabIndex = 3;
             this.buttonWorkModSave.Text = "저장";
             this.buttonWorkModSave.UseVisualStyleBackColor = true;
             this.buttonWorkModSave.Click += new System.EventHandler(this.buttonWorkModSave_Click);
@@ -55,7 +55,7 @@
             this.comboBoxSubCateMod.Location = new System.Drawing.Point(164, 222);
             this.comboBoxSubCateMod.Name = "comboBoxSubCateMod";
             this.comboBoxSubCateMod.Size = new System.Drawing.Size(121, 20);
-            this.comboBoxSubCateMod.TabIndex = 6;
+            this.comboBoxSubCateMod.TabIndex = 2;
             this.comboBoxSubCateMod.Text = "소분류";
             // 
             // comboBoxMiddleCateMod
@@ -67,7 +67,7 @@
             this.comboBoxMiddleCateMod.Location = new System.Drawing.Point(164, 146);
             this.comboBoxMiddleCateMod.Name = "comboBoxMiddleCateMod";
             this.comboBoxMiddleCateMod.Size = new System.Drawing.Size(121, 20);
-            this.comboBoxMiddleCateMod.TabIndex = 5;
+            this.comboBoxMiddleCateMod.TabIndex = 1;
             this.comboBoxMiddleCateMod.Text = "중분류";
             // 
             // comboBoxMainCateMod
@@ -80,7 +80,7 @@
             this.comboBoxMainCateMod.Location = new System.Drawing.Point(164, 82);
             this.comboBoxMainCateMod.Name = "comboBoxMainCateMod";
             this.comboBoxMainCateMod.Size = new System.Drawing.Size(121, 20);
-            this.comboBoxMainCateMod.TabIndex = 4;
+            this.comboBoxMainCateMod.TabIndex = 0;
             this.comboBoxMainCateMod.Text = "대분류";
             // 
             // Form3
@@ -93,7 +93,7 @@
             this.Controls.Add(this.comboBoxMiddleCateMod);
             this.Controls.Add(this.comboBoxMainCateMod);
             this.Name = "Form3";
-            this.Text = "Form3";
+            this.Text = "업무수정";
             this.ResumeLayout(false);
 
         }

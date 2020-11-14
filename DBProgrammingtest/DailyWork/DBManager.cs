@@ -26,7 +26,6 @@ namespace DailyWork
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.ExecuteNonQuery();
             }
-
         }
         public void Update(string query, string maincategory, string middlecategory, string subcategory)
         {
@@ -47,7 +46,6 @@ namespace DailyWork
             MySqlCommand cmd = new MySqlCommand(query, conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
             return rdr;
-
         }
     }
 }
