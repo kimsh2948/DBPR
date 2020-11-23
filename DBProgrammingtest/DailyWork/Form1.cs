@@ -37,9 +37,9 @@ namespace DailyWork
         }
         private void buttonWorkMod_Click(object sender, EventArgs e)
         {
+            Form3 form3 = new Form3(this);
             if (listViewWorkList.SelectedIndices.Count > 0)
             {
-                Form3 form3 = new Form3(this);
                 form3.Show();
             }
             else
@@ -97,6 +97,12 @@ namespace DailyWork
             listViewWorkList.Items.RemoveAt(indexnum-1);
             listViewWorkList.EndUpdate();
 
+        }
+
+        private void buttonWorkSerch_Click(object sender, EventArgs e)
+        {
+            Form4 form4 = new Form4(this);
+            form4.Show();
         }
     }
 }

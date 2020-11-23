@@ -33,6 +33,7 @@
             this.buttonWorkDel = new System.Windows.Forms.Button();
             this.listViewWorkList = new System.Windows.Forms.ListView();
             this.buttonLoadWorkList = new System.Windows.Forms.Button();
+            this.buttonWorkSerch = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonWorkReg
@@ -85,11 +86,22 @@
             this.buttonLoadWorkList.UseVisualStyleBackColor = true;
             this.buttonLoadWorkList.Click += new System.EventHandler(this.buttonLoadWorkList_Click);
             // 
+            // buttonWorkSerch
+            // 
+            this.buttonWorkSerch.Location = new System.Drawing.Point(26, 201);
+            this.buttonWorkSerch.Name = "buttonWorkSerch";
+            this.buttonWorkSerch.Size = new System.Drawing.Size(121, 41);
+            this.buttonWorkSerch.TabIndex = 5;
+            this.buttonWorkSerch.Text = "검색";
+            this.buttonWorkSerch.UseVisualStyleBackColor = true;
+            this.buttonWorkSerch.Click += new System.EventHandler(this.buttonWorkSerch_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonWorkSerch);
             this.Controls.Add(this.buttonLoadWorkList);
             this.Controls.Add(this.listViewWorkList);
             this.Controls.Add(this.buttonWorkDel);
@@ -108,6 +120,7 @@
         private System.Windows.Forms.Button buttonWorkDel;
         public System.Windows.Forms.ListView listViewWorkList;
         private System.Windows.Forms.Button buttonLoadWorkList;
+        private System.Windows.Forms.Button buttonWorkSerch;
     }
 }
 

@@ -34,7 +34,7 @@ namespace DailyWork
         {
             Form2 form2 = new Form2();
             ModWork();
-            //form2.AddListView();
+            form2.AddListView();
         }
         
         public void ModWork()
