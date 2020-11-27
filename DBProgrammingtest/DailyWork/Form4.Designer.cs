@@ -34,14 +34,14 @@
             // 
             // textBoxInputKeyword
             // 
-            this.textBoxInputKeyword.Location = new System.Drawing.Point(99, 145);
+            this.textBoxInputKeyword.Location = new System.Drawing.Point(98, 100);
             this.textBoxInputKeyword.Name = "textBoxInputKeyword";
             this.textBoxInputKeyword.Size = new System.Drawing.Size(181, 21);
             this.textBoxInputKeyword.TabIndex = 0;
             // 
             // buttonWorkSerchOn
             // 
-            this.buttonWorkSerchOn.Location = new System.Drawing.Point(315, 143);
+            this.buttonWorkSerchOn.Location = new System.Drawing.Point(320, 100);
             this.buttonWorkSerchOn.Name = "buttonWorkSerchOn";
             this.buttonWorkSerchOn.Size = new System.Drawing.Size(75, 23);
             this.buttonWorkSerchOn.TabIndex = 1;
@@ -53,11 +53,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 450);
+            this.ClientSize = new System.Drawing.Size(499, 229);
             this.Controls.Add(this.buttonWorkSerchOn);
             this.Controls.Add(this.textBoxInputKeyword);
             this.Name = "Form4";
-            this.Text = "Form4";
+            this.Text = "검색";
             this.ResumeLayout(false);
             this.PerformLayout();
 

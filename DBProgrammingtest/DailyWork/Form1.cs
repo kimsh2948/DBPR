@@ -24,10 +24,13 @@ namespace DailyWork
             listViewWorkList.GridLines = true;
             listViewWorkList.FullRowSelect = true;
 
-            listViewWorkList.Columns.Add("번호", 55);
-            listViewWorkList.Columns.Add("대분류", 150);
-            listViewWorkList.Columns.Add("중분류", 150);
-            listViewWorkList.Columns.Add("소분류", 150);
+            listViewWorkList.Columns.Add("번호", 40);
+            listViewWorkList.Columns.Add("날짜", 93);
+            listViewWorkList.Columns.Add("시작 시간", 93);
+            listViewWorkList.Columns.Add("종료 시간", 93);
+            listViewWorkList.Columns.Add("대분류", 93);
+            listViewWorkList.Columns.Add("중분류", 93);
+            listViewWorkList.Columns.Add("소분류", 93);
         }
 
         private void buttonWorkReg_Click(object sender, EventArgs e)
@@ -64,6 +67,9 @@ namespace DailyWork
                 WorkCategory workcategory = new WorkCategory();
                 workcategory = worklist[i];
                 item = new ListViewItem(Convert.ToString(workcategory.id));
+                item.SubItems.Add(workcategory.day);
+                item.SubItems.Add(workcategory.start_time);
+                item.SubItems.Add(workcategory.end_time);
                 item.SubItems.Add(workcategory.MainCategory);
                 item.SubItems.Add(workcategory.MiddleCategory);
                 item.SubItems.Add(workcategory.SubCategory);
@@ -77,13 +83,11 @@ namespace DailyWork
         private void buttonWorkDel_Click(object sender, EventArgs e)
         {
             Form2 form2 = new Form2();
-            int indexnum = listViewWorkList.FocusedItem.Index + 1;//선택된 listview 인덱스에 +1, DB id와 일치
+            int indexnum = Convert.ToInt32(listViewWorkList.FocusedItem.Text);
             if (MessageBox.Show("선택하신 업무가 삭제됩니다", "업무 삭제", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                string query = "DELETE FROM dailywork WHERE id = '"+indexnum+"'";
+                string query = "DELETE FROM dailywork WHERE id = '" + indexnum + "'";
                 DBManager.GetInstace().DBquery(query);
-                //query = "ALTER TABLE dailywork AUTO_INCREMENT = '" + indexnum + "'";
-                //DBManager.GetInstace().DBquery(query);
                 DelList(indexnum);
             }
             else
@@ -94,9 +98,8 @@ namespace DailyWork
         public void DelList(int indexnum)
         {
             listViewWorkList.BeginUpdate();
-            listViewWorkList.Items.RemoveAt(indexnum-1);
+            listViewWorkList.FocusedItem.Remove();
             listViewWorkList.EndUpdate();
-
         }
 
         private void buttonWorkSerch_Click(object sender, EventArgs e)

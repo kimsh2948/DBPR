@@ -30,6 +30,16 @@ namespace DailyWork
 
         public void InitVariables()
         {
+            this.dateTimePickerInsertWork.Format = DateTimePickerFormat.Custom;
+            this.dateTimePickerInsertWork.CustomFormat = "yyyy-MM-dd";
+
+            this.dateTimePickerStartTime.ShowUpDown = true;
+            this.dateTimePickerStartTime.Format = DateTimePickerFormat.Time;
+            this.dateTimePickerStartTime.CustomFormat = "hh:mm";
+
+            this.dateTimePickerEndTime.ShowUpDown = true;
+            this.dateTimePickerEndTime.Format = DateTimePickerFormat.Time;
+            this.dateTimePickerEndTime.CustomFormat = "hh:mm";
 
         }
         private void buttonWorkRegSave_Click(object sender, EventArgs e)
@@ -40,11 +50,14 @@ namespace DailyWork
         public void AddWork()
         {
             WorkCategory workcategory = new WorkCategory();
+            var day = dateTimePickerInsertWork.Text;
+            var start_time = dateTimePickerStartTime.Text;
+            var end_time = dateTimePickerEndTime.Text;
             var maincategory = comboBoxMainCate.Text;
             var middlecategory = comboBoxMiddleCate.Text;
             var subcategory = comboBoxSubCate.Text;
-            string query = "INSERT INTO dailywork(id, MainCategory, MiddleCategory, SubCategory) " +
-                "VALUES('"+workcategory.id+"','" + maincategory + "', '" + middlecategory + "','" + subcategory + "')";
+            string query = "INSERT INTO dailywork(id, Day, StartTime, EndTime, MainCategory, MiddleCategory, SubCategory) " +
+                "VALUES('"+workcategory.id+ "','" + day + "','" + start_time + "','" + end_time + "','" + maincategory + "', '" + middlecategory + "','" + subcategory + "')";
             if (maincategory == "대분류" || middlecategory == "중분류" || subcategory == "소분류")//세가지 모두 선택해야 저장
             {
                 MessageBox.Show("모든 항목을 선택하세요");
@@ -66,6 +79,9 @@ namespace DailyWork
             {
                 WorkCategory workcategory = new WorkCategory();
                 workcategory.id = (int)rdr["id"];
+                workcategory.day = (string)rdr["Day"];
+                workcategory.start_time = (string)rdr["StartTime"];
+                workcategory.end_time = (string)rdr["EndTime"];
                 workcategory.MainCategory = (string)rdr["MainCategory"];
                 workcategory.MiddleCategory = (string)rdr["MiddleCategory"];
                 workcategory.SubCategory = (string)rdr["SubCategory"];
@@ -91,6 +107,9 @@ namespace DailyWork
                 WorkCategory workcategory = new WorkCategory();
                 workcategory = worklist[i];
                 item = new ListViewItem(Convert.ToString(workcategory.id));
+                item.SubItems.Add(workcategory.day);
+                item.SubItems.Add(workcategory.start_time);
+                item.SubItems.Add(workcategory.end_time);
                 item.SubItems.Add(workcategory.MainCategory);
                 item.SubItems.Add(workcategory.MiddleCategory);
                 item.SubItems.Add(workcategory.SubCategory);
@@ -101,6 +120,10 @@ namespace DailyWork
             }
             form1.listViewWorkList.EndUpdate();
         }
-        
+        public void TimeOverlap()
+        {
+            //dateTimePickerStartTime.Value
+        }
+
     }
 }

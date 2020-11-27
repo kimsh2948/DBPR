@@ -39,7 +39,7 @@ namespace DailyWork
                 }
             Form2 form2 = new Form2();
             int i = 0;
-            List<WorkCategory> worklist = LoadWork_4();
+            List<WorkCategory> worklist = SearchLoad();
 
             form1.listViewWorkList.BeginUpdate();
             ListViewItem item;
@@ -48,6 +48,9 @@ namespace DailyWork
                 WorkCategory workcategory = new WorkCategory();
                 workcategory = worklist[i];
                 item = new ListViewItem(Convert.ToString(workcategory.id));
+                item.SubItems.Add(workcategory.day);
+                item.SubItems.Add(workcategory.start_time);
+                item.SubItems.Add(workcategory.end_time);
                 item.SubItems.Add(workcategory.MainCategory);
                 item.SubItems.Add(workcategory.MiddleCategory);
                 item.SubItems.Add(workcategory.SubCategory);
@@ -61,19 +64,23 @@ namespace DailyWork
             else
                 this.Close();
         }
-        public List<WorkCategory> LoadWork_4()
+        public List<WorkCategory> SearchLoad()
         {
             List<WorkCategory> worklist = new List<WorkCategory>();
 
             string keyword = textBoxInputKeyword.Text;
 
-            string query = "SELECT * FROM dailywork WHERE MainCategory LIKE'%" + keyword + "%'";
+            string query = "SELECT * FROM dailywork WHERE Day LIKE'%" + keyword + "%' " +
+                "OR MainCategory LIKE'%" + keyword + "%' OR MiddleCategory LIKE'%" + keyword + "%' OR SubCategory LIKE'%" + keyword + "%'";
             //OR WHERE MiddleCategory = '" + keyword + "' OR WHERE SubCategory = '" + keyword + "'
             MySqlDataReader rdr = DBManager.GetInstace().Select(query);
             while (rdr.Read())
             {
                 WorkCategory workcategory = new WorkCategory();
                 workcategory.id = (int)rdr["id"];
+                workcategory.day = (string)rdr["Day"];
+                workcategory.start_time = (string)rdr["StartTime"];
+                workcategory.end_time = (string)rdr["EndTime"];
                 workcategory.MainCategory = (string)rdr["MainCategory"];
                 workcategory.MiddleCategory = (string)rdr["MiddleCategory"];
                 workcategory.SubCategory = (string)rdr["SubCategory"];
@@ -82,31 +89,6 @@ namespace DailyWork
             }
             rdr.Close();
             return worklist;
-        }
-        public void AddListView_4()
-        {
-            if (form1.listViewWorkList.Items.Count > 0)//listview에 아이템 있으면 지우고 로드
-            {
-                form1.listViewWorkList.Items.Clear();
-            }
-            List<WorkCategory> worklist = LoadWork_4();
-            form1.listViewWorkList.BeginUpdate();
-            ListViewItem item;
-            int i = 0;
-            while (i < worklist.Count)//listview에 삽입
-            {
-                WorkCategory workcategory = new WorkCategory();
-                workcategory = worklist[i];
-                item = new ListViewItem(Convert.ToString(workcategory.id));
-                item.SubItems.Add(workcategory.MainCategory);
-                item.SubItems.Add(workcategory.MiddleCategory);
-                item.SubItems.Add(workcategory.SubCategory);
-
-                form1.listViewWorkList.Items.Add(item);
-
-                i++;
-            }
-            form1.listViewWorkList.EndUpdate();
         }
     }
 }

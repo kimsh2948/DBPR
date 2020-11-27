@@ -34,18 +34,18 @@ namespace DailyWork
         {
             Form2 form2 = new Form2();
             ModWork();
-            form2.AddListView();
+            AddListView();
         }
         
         public void ModWork()
         {
-            int indexnum = form1.listViewWorkList.FocusedItem.Index + 1;
-            string query = "SELECT * FROM dailywork";
+            Form2 form2 = new Form2();
+            int indexnum = Convert.ToInt32(form1.listViewWorkList.FocusedItem.Text);
 
             string maincategory = comboBoxMainCateMod.Text;
             string middlecategory = comboBoxMiddleCateMod.Text;
-            string subcategory = comboBoxSubCateMod.Text;
-            query = "UPDATE dailywork SET MainCategory = @maincategory, MiddleCategory = " +
+            string subcategory = comboBoxSubCateMod.Text; 
+            string query = "UPDATE dailywork SET MainCategory = @maincategory, MiddleCategory = " +
                 "@middlecategory, SubCategory = @subcategory WHERE id='"+indexnum+"'";
 
             if (maincategory == "대분류" || middlecategory == "중분류" || subcategory == "소분류")
@@ -58,5 +58,35 @@ namespace DailyWork
                 this.Close();
             }
         }
+        public void AddListView()
+        {
+            Form2 form2 = new Form2();
+            if (form1.listViewWorkList.Items.Count > 0)//listview에 아이템 있으면 지우고 로드
+            {
+                form1.listViewWorkList.Items.Clear();
+            }
+            List<WorkCategory> worklist = form2.LoadWork();
+            form1.listViewWorkList.BeginUpdate();
+            ListViewItem item;
+            int i = 0;
+            while (i < worklist.Count)//listview에 삽입
+            {
+                WorkCategory workcategory = new WorkCategory();
+                workcategory = worklist[i];
+                item = new ListViewItem(Convert.ToString(workcategory.id));
+                item.SubItems.Add(workcategory.day);
+                item.SubItems.Add(workcategory.start_time);
+                item.SubItems.Add(workcategory.end_time);
+                item.SubItems.Add(workcategory.MainCategory);
+                item.SubItems.Add(workcategory.MiddleCategory);
+                item.SubItems.Add(workcategory.SubCategory);
+
+                form1.listViewWorkList.Items.Add(item);
+
+                i++;
+            }
+            form1.listViewWorkList.EndUpdate();
+        }
+
     }
 }

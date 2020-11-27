@@ -38,7 +38,7 @@
             // 
             // buttonWorkReg
             // 
-            this.buttonWorkReg.Location = new System.Drawing.Point(170, 328);
+            this.buttonWorkReg.Location = new System.Drawing.Point(138, 349);
             this.buttonWorkReg.Name = "buttonWorkReg";
             this.buttonWorkReg.Size = new System.Drawing.Size(105, 46);
             this.buttonWorkReg.TabIndex = 0;
@@ -48,7 +48,7 @@
             // 
             // buttonWorkMod
             // 
-            this.buttonWorkMod.Location = new System.Drawing.Point(366, 328);
+            this.buttonWorkMod.Location = new System.Drawing.Point(382, 349);
             this.buttonWorkMod.Name = "buttonWorkMod";
             this.buttonWorkMod.Size = new System.Drawing.Size(105, 46);
             this.buttonWorkMod.TabIndex = 1;
@@ -58,7 +58,7 @@
             // 
             // buttonWorkDel
             // 
-            this.buttonWorkDel.Location = new System.Drawing.Point(570, 328);
+            this.buttonWorkDel.Location = new System.Drawing.Point(643, 349);
             this.buttonWorkDel.Name = "buttonWorkDel";
             this.buttonWorkDel.Size = new System.Drawing.Size(105, 46);
             this.buttonWorkDel.TabIndex = 2;
@@ -70,9 +70,9 @@
             // 
             this.listViewWorkList.GridLines = true;
             this.listViewWorkList.HideSelection = false;
-            this.listViewWorkList.Location = new System.Drawing.Point(170, 48);
+            this.listViewWorkList.Location = new System.Drawing.Point(138, 48);
             this.listViewWorkList.Name = "listViewWorkList";
-            this.listViewWorkList.Size = new System.Drawing.Size(505, 236);
+            this.listViewWorkList.Size = new System.Drawing.Size(610, 253);
             this.listViewWorkList.TabIndex = 3;
             this.listViewWorkList.UseCompatibleStateImageBehavior = false;
             // 
@@ -80,7 +80,7 @@
             // 
             this.buttonLoadWorkList.Location = new System.Drawing.Point(26, 48);
             this.buttonLoadWorkList.Name = "buttonLoadWorkList";
-            this.buttonLoadWorkList.Size = new System.Drawing.Size(121, 41);
+            this.buttonLoadWorkList.Size = new System.Drawing.Size(94, 41);
             this.buttonLoadWorkList.TabIndex = 4;
             this.buttonLoadWorkList.Text = "업무 불러오기";
             this.buttonLoadWorkList.UseVisualStyleBackColor = true;
@@ -90,7 +90,7 @@
             // 
             this.buttonWorkSerch.Location = new System.Drawing.Point(26, 201);
             this.buttonWorkSerch.Name = "buttonWorkSerch";
-            this.buttonWorkSerch.Size = new System.Drawing.Size(121, 41);
+            this.buttonWorkSerch.Size = new System.Drawing.Size(94, 41);
             this.buttonWorkSerch.TabIndex = 5;
             this.buttonWorkSerch.Text = "검색";
             this.buttonWorkSerch.UseVisualStyleBackColor = true;
