@@ -101,6 +101,7 @@
             this.dateTimePickerStartTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dateTimePickerStartTime.Location = new System.Drawing.Point(166, 72);
             this.dateTimePickerStartTime.Name = "dateTimePickerStartTime";
+            this.dateTimePickerStartTime.ShowUpDown = true;
             this.dateTimePickerStartTime.Size = new System.Drawing.Size(170, 21);
             this.dateTimePickerStartTime.TabIndex = 5;
             // 
@@ -109,6 +110,7 @@
             this.dateTimePickerEndTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dateTimePickerEndTime.Location = new System.Drawing.Point(166, 99);
             this.dateTimePickerEndTime.Name = "dateTimePickerEndTime";
+            this.dateTimePickerEndTime.ShowUpDown = true;
             this.dateTimePickerEndTime.Size = new System.Drawing.Size(170, 21);
             this.dateTimePickerEndTime.TabIndex = 6;
             // 

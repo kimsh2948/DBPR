@@ -25,6 +25,7 @@ namespace DailyWork
         public Form2(Form1 form)
         {
             InitializeComponent();
+            InitVariables();
             form1 = form;
         }
 
@@ -34,38 +35,36 @@ namespace DailyWork
             this.dateTimePickerInsertWork.CustomFormat = "yyyy-MM-dd";
 
             this.dateTimePickerStartTime.ShowUpDown = true;
-            this.dateTimePickerStartTime.Format = DateTimePickerFormat.Time;
-            this.dateTimePickerStartTime.CustomFormat = "hh:mm";
+            this.dateTimePickerStartTime.Format = DateTimePickerFormat.Custom;
+            this.dateTimePickerStartTime.CustomFormat = "HH:mm";
 
             this.dateTimePickerEndTime.ShowUpDown = true;
-            this.dateTimePickerEndTime.Format = DateTimePickerFormat.Time;
-            this.dateTimePickerEndTime.CustomFormat = "hh:mm";
+            this.dateTimePickerEndTime.Format = DateTimePickerFormat.Custom;
+            this.dateTimePickerEndTime.CustomFormat = "HH:mm";
 
         }
         private void buttonWorkRegSave_Click(object sender, EventArgs e)
         {
             AddWork();
-            AddListView();
+            AddListView(); 
         }
         public void AddWork()
         {
-            WorkCategory workcategory = new WorkCategory();
             var day = dateTimePickerInsertWork.Text;
             var start_time = dateTimePickerStartTime.Text;
             var end_time = dateTimePickerEndTime.Text;
             var maincategory = comboBoxMainCate.Text;
             var middlecategory = comboBoxMiddleCate.Text;
             var subcategory = comboBoxSubCate.Text;
-            string query = "INSERT INTO dailywork(id, Day, StartTime, EndTime, MainCategory, MiddleCategory, SubCategory) " +
-                "VALUES('"+workcategory.id+ "','" + day + "','" + start_time + "','" + end_time + "','" + maincategory + "', '" + middlecategory + "','" + subcategory + "')";
+            string query = "INSERT INTO dailywork(Day, StartTime, EndTime, MainCategory, MiddleCategory, SubCategory) " +
+                "VALUES('" + day + "','" + start_time + "','" + end_time + "','" + maincategory + "', '" + middlecategory + "','" + subcategory + "')";
             if (maincategory == "대분류" || middlecategory == "중분류" || subcategory == "소분류")//세가지 모두 선택해야 저장
             {
                 MessageBox.Show("모든 항목을 선택하세요");
             }
             else
             {
-                DBManager.GetInstace().DBquery(query);
-                this.Close();
+                TimeOverlap(query);
             }
         }
 
@@ -120,9 +119,78 @@ namespace DailyWork
             }
             form1.listViewWorkList.EndUpdate();
         }
-        public void TimeOverlap()
+        public void TimeOverlap(string query)
         {
-            //dateTimePickerStartTime.Value
+            int start_hour = dateTimePickerStartTime.Value.Hour;
+            int end_hour = dateTimePickerEndTime.Value.Hour;
+            int start_minute = dateTimePickerStartTime.Value.Minute;
+            int end_minute = dateTimePickerEndTime.Value.Minute;
+
+            List<WorkCategory> worklist = LoadWork();
+
+            int i = 0;
+            while (i < worklist.Count)//listview에 삽입
+            {
+                WorkCategory workcategory = new WorkCategory();
+                workcategory = worklist[i];
+                DateTime work_start_time = Convert.ToDateTime(workcategory.start_time);
+                DateTime work_end_time = Convert.ToDateTime(workcategory.end_time);
+
+                //등록 시간이 시작 시간과 종료시간 사이일때
+                if (start_hour > work_start_time.Hour && start_hour < work_end_time.Hour)
+                {
+                    MessageBox.Show("다른 업무가 있습니다! 등록 할 수 없습니다.");
+                    this.Close();
+                    break;
+                }
+                else if (start_hour >= work_start_time.Hour && start_hour < work_end_time.Hour && start_minute > work_start_time.Minute)
+                {
+                    MessageBox.Show("다른 업무가 있습니다! 등록 할 수 없습니다.");
+                    this.Close();
+                    break;
+                }
+                else if (start_hour > work_start_time.Hour && start_hour <= work_end_time.Hour && start_minute < work_end_time.Minute)
+                {
+                    MessageBox.Show("다른 업무가 있습니다! 등록 할 수 없습니다.");
+                    this.Close();
+                    break;
+                }
+                else if (start_hour == work_start_time.Hour && start_minute >= work_start_time.Minute && start_hour != work_end_time.Hour)
+                {
+                    MessageBox.Show("다른 업무가 있습니다! 등록 할 수 없습니다.");
+                    this.Close();
+                    break;
+                }
+                else if (start_hour == work_end_time.Hour && start_minute <= work_end_time.Minute && start_hour != work_start_time.Hour)
+                {
+                    MessageBox.Show("다른 업무가 있습니다! 등록 할 수 없습니다.");
+                    this.Close();
+                    break;
+                }
+                else if (start_hour == work_start_time.Hour && start_hour == work_end_time.Hour && start_minute >= work_start_time.Minute && start_minute <= work_end_time.Minute)
+                {
+                    MessageBox.Show("다른 업무가 있습니다! 등록 할 수 없습니다.");
+                    this.Close();
+                    break;
+                }
+                else if (start_hour == work_start_time.Hour && start_hour == work_end_time.Hour && end_minute <= work_end_time.Minute)
+                {
+                    MessageBox.Show("다른 업무가 있습니다! 등록 할 수 없습니다.");
+                    this.Close();
+                    break;
+                }
+                else
+                {
+                    DBManager.GetInstace().DBquery(query);
+                    this.Close();
+                    break;
+                }
+
+                i++;
+            }
+            
+
+
         }
 
     }
