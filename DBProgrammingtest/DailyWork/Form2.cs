@@ -129,6 +129,7 @@ namespace DailyWork
             List<WorkCategory> worklist = LoadWork();
 
             int i = 0;
+            int j = 0;
             while (i < worklist.Count)//listview에 삽입
             {
                 WorkCategory workcategory = new WorkCategory();
@@ -140,56 +141,86 @@ namespace DailyWork
                 if (start_hour > work_start_time.Hour && start_hour < work_end_time.Hour)
                 {
                     MessageBox.Show("다른 업무가 있습니다! 등록 할 수 없습니다.");
+                    j = 1;
+                    this.Close();
+                    break;
+                }
+                else if (end_hour > work_start_time.Hour && end_hour < work_end_time.Hour)
+                {
+                    MessageBox.Show("다른 업무가 있습니다! 등록 할 수 없습니다.");
+                    j = 1;
                     this.Close();
                     break;
                 }
                 else if (start_hour >= work_start_time.Hour && start_hour < work_end_time.Hour && start_minute > work_start_time.Minute)
                 {
                     MessageBox.Show("다른 업무가 있습니다! 등록 할 수 없습니다.");
+                    j = 1;
                     this.Close();
                     break;
                 }
                 else if (start_hour > work_start_time.Hour && start_hour <= work_end_time.Hour && start_minute < work_end_time.Minute)
                 {
                     MessageBox.Show("다른 업무가 있습니다! 등록 할 수 없습니다.");
+                    j = 1;
+                    this.Close();
+                    break;
+                }
+                else if (end_hour >= work_start_time.Hour && end_hour < work_end_time.Hour && end_minute > work_start_time.Minute)
+                {
+                    MessageBox.Show("다른 업무가 있습니다! 등록 할 수 없습니다.");
+                    j = 1;
+                    this.Close();
+                    break;
+                }
+                else if (end_hour > work_start_time.Hour && end_hour <= work_end_time.Hour && end_minute < work_end_time.Minute)
+                {
+                    MessageBox.Show("다른 업무가 있습니다! 등록 할 수 없습니다.");
+                    j = 1;
                     this.Close();
                     break;
                 }
                 else if (start_hour == work_start_time.Hour && start_minute >= work_start_time.Minute && start_hour != work_end_time.Hour)
                 {
                     MessageBox.Show("다른 업무가 있습니다! 등록 할 수 없습니다.");
+                    j = 1;
                     this.Close();
                     break;
                 }
                 else if (start_hour == work_end_time.Hour && start_minute <= work_end_time.Minute && start_hour != work_start_time.Hour)
                 {
                     MessageBox.Show("다른 업무가 있습니다! 등록 할 수 없습니다.");
+                    j = 1;
                     this.Close();
                     break;
                 }
                 else if (start_hour == work_start_time.Hour && start_hour == work_end_time.Hour && start_minute >= work_start_time.Minute && start_minute <= work_end_time.Minute)
                 {
                     MessageBox.Show("다른 업무가 있습니다! 등록 할 수 없습니다.");
+                    j = 1;
                     this.Close();
                     break;
                 }
-                else if (start_hour == work_start_time.Hour && start_hour == work_end_time.Hour && end_minute <= work_end_time.Minute)
+                else if (start_hour == work_start_time.Hour && start_hour == work_end_time.Hour && end_hour == work_end_time.Hour && end_minute <= work_end_time.Minute)
                 {
                     MessageBox.Show("다른 업무가 있습니다! 등록 할 수 없습니다.");
-                    this.Close();
-                    break;
-                }
-                else
-                {
-                    DBManager.GetInstace().DBquery(query);
+                    j = 1;
                     this.Close();
                     break;
                 }
 
                 i++;
             }
-            
+            if(j == 1)
+            {
+                this.Close();
+            }
+            else
+            {
+                DBManager.GetInstace().DBquery(query);
+                this.Close();
 
+            }
 
         }
 
