@@ -60,7 +60,7 @@ namespace DailyWork
                 "VALUES('" + day + "','" + start_time + "','" + end_time + "','" + maincategory + "', '" + middlecategory + "','" + subcategory + "')";
             if (maincategory == "대분류" || middlecategory == "중분류" || subcategory == "소분류")//세가지 모두 선택해야 저장
             {
-                MessageBox.Show("모든 항목을 선택하세요");
+                MessageBox.Show("모든 항목을 선택하세요")
             }
             else
             {
